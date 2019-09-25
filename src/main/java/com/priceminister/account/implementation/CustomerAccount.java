@@ -4,20 +4,28 @@ import com.priceminister.account.*;
 
 
 public class CustomerAccount implements Account {
+	private Double balance = new Double(0.00);
 
     public void add(Double addedAmount) {
-        // TODO Auto-generated method stub
+    	this.balance += addedAmount;
     }
 
     public Double getBalance() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.balance;
     }
 
-    public Double withdrawAndReportBalance(Double withdrawnAmount, AccountRule rule) 
+    public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+	public Double withdrawAndReportBalance(Double withdrawnAmount, AccountRule rule) 
     		throws IllegalBalanceException {
-        // TODO Auto-generated method stub
-        return null;
+    	Double withdrawnBalance = this.balance - withdrawnAmount;
+    	if(!rule.withdrawPermitted(withdrawnBalance)) {
+    		throw new IllegalBalanceException(withdrawnBalance);
+    	}
+    	setBalance(withdrawnBalance);
+        return withdrawnBalance;
     }
 
 }
