@@ -4,7 +4,7 @@ import com.priceminister.account.*;
 
 
 public class CustomerAccount implements Account {
-	private Double balance = new Double(0.00);
+	private Double balance = new Double(0.0);
 
     public void add(Double addedAmount) {
     	this.balance += addedAmount;
